@@ -16,7 +16,9 @@ const useAxios = (baseUrl) => {
         const response = await axios.get( `${baseUrl}${urlEndPoint}` );
         setFetchedData(data => [...data, { ...response.data, id: uuid() }]);
     }
-    return [ fetchedData, getNewData ]
+    const purgeMemory = () => { setFetchedData([]) };
+    
+    return [ fetchedData, getNewData, purgeMemory];
 };
 
 
